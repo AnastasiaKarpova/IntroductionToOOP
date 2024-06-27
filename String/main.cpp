@@ -72,6 +72,17 @@ public:
 		cout << "CopyAssignment:" << this << endl;
 		return *this;
 	}
+	String& operator=(String&& other)noexcept
+	{
+		if (this == &other)return *this;
+		delete[] this->str;
+		this->size = other.size;
+		this->str = other.str;
+		other.size = 0;
+		other.str = nullptr;
+		cout << "MoveAssignment:" << this << endl;
+		return *this;
+	}
 	const char& operator[](int i)const
 	{
 		return str[i];
